@@ -14,6 +14,9 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
     protected Object createBean(String beanName, BeanDefinition beanDefinition) throws BeansException {
         Object bean;
         try {
+            //反射：newInstance()也是用来创建新的对象,其与new()的区别是:
+            //newInstance():弱类型,效率低,只能调用无参构造
+            //new():强类型,高效率,能调用任何public构造器
             bean = beanDefinition.getBeanClass().newInstance();
         } catch (InstantiationException | IllegalAccessException e) {
             throw new BeansException("Instantiation of bean failed", e);
